@@ -34,13 +34,20 @@ def unidade(number):
 
 def dezena(number):
     num_str = str(number)
-    return dezenas[number] if dezenas.get(number) != None  else f"{dezenas[int(num_str[0])]} e {unidades[int(num_str[1])]}"
-
+    if dezenas.get(number) != None :
+        return dezenas[number]
+    elif num_str[0] == "0":
+        return translate(num_str[1])
+    else:
+        return f"{dezenas[int(num_str[0])]} e {unidades[int(num_str[1])]}"
+        
 def centena(number):
     num_str = str(number)
     
     if centenas.get(number) != None:
         return centenas[number]
+    elif num_str[0] == "0":
+       return translate(num_str[1:3])
     elif num_str[1] == "0":
        return f"{centenas[int(num_str[0])]} e {translate(num_str[2:3])}"
     else: 
